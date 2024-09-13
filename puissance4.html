@@ -1,12 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Puissance 4 Ynov</title>
-    <script type=".." src="scriptp4.js"></script>
+    <title>Test Puissance 4</title>
+    <style>
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(7, 50px);
+            grid-template-rows: repeat(6, 50px);
+            gap: 5px;
+        }
+        .cell {
+            width: 50px;
+            height: 50px;
+            background-color: lightgray;
+            border: 1px solid black;
+        }
+        .red { background-color: red; }
+        .yellow { background-color: yellow; }
+    </style>
 </head>
 <body>
-    <h1>TEST</h1>
+    <h1>Puissance 4 Test</h1>
+    <div class="grid" id="grid">
+        <!-- Les cellules seront générées par JavaScript -->
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
