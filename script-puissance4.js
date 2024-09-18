@@ -27,41 +27,64 @@ function initialiserPlateau() {
     // Crée des cases (div) pour chaque cellule du tableau
     for (let ligne = 0; ligne < nombreDeLignes; ligne++) {
         for (let colonne = 0; colonne < nombreDeColonnes; colonne++) {
+            // ---- ChatGPT
             let cellule = document.createElement('div');
             cellule.classList.add('cell');
             cellule.dataset.ligne = ligne;
             cellule.dataset.colonne = colonne;
+            // ---- ChatGPT
             plateauHTML.appendChild(cellule);
         }
     }
 }
 
+// Fonction pour faire le son du jeton
+function sonjeton() {
+    let audio = new Audio('../import/0918.MP3')
+    audio.play();
+}
+
+// Fonction pour faire le son du jeton
+function sonVictoire() {
+    let audio = new Audio('../import/sonvictoire.mp3')
+    audio.play();
+}
+function nouvelleGame() {
+    let audio = new Audio('../import/voieoff.mp3')
+    audio.play();
+}
+
 // Fonction pour placer un jeton dans une colonne donnée
 function placerJeton(colonneChoisie) {
-    if (jeuTerminé) return; // Arrêter si le jeu est déjà terminé
+    if (jeuTerminé) return; // Vérifie si le jeu est déjà terminé
 
     // On part du bas de la colonne et on cherche la première case vide
     for (let ligne = nombreDeLignes - 1; ligne >= 0; ligne--) {
         if (plateauDeJeu[ligne][colonneChoisie] === null) {
-            // Place le jeton dans le tableau logique
             plateauDeJeu[ligne][colonneChoisie] = joueurActuel;
 
-            // Crée un jeton visuel dans l'HTML
+            // Création visuel d'un jeton dans HTML
+            // --- ChatGPT
             let cellule = document.querySelector(`.cell[data-ligne='${ligne}'][data-colonne='${colonneChoisie}']`);
             let jeton = document.createElement('div');
             jeton.classList.add('token', joueurActuel, 'drop-animation');
+            // --- ChatGPT
             cellule.appendChild(jeton);
+
+            // Joue le son du jeton
+            sonjeton()
 
             // Vérifie si le joueur a gagné
             if (verifierVictoire(ligne, colonneChoisie)) {
+                sonVictoire()
                 setTimeout(() => {
                     alert(joueurActuel.toUpperCase() + ' a gagné !');
                     reinitialiserJeu();
+                    nouvelleGame();
                 }, 100);
                 jeuTerminé = true; // Fin du jeu
             } else {
-                // Change de joueur après chaque coup
-                joueurActuel = (joueurActuel === 'yellow') ? 'red' : 'yellow';
+                joueurActuel = (joueurActuel === 'yellow') ? 'red' : 'yellow'; // Changement de joueur
             }
             return; // Sort de la fonction une fois le jeton placé
         }
@@ -80,13 +103,10 @@ function verifierVictoire(ligne, colonne) {
 // Fonction pour vérifier s'il y a 4 jetons alignés dans une direction
 function verifierLigne(ligne, colonne, directionLigne, directionColonne) {
     let compteur = 1; // Compte le jeton actuel
-
     // Vérifie dans une direction (ex : vers la droite)
     compteur += compterJetons(ligne, colonne, directionLigne, directionColonne);
-
     // Vérifie dans la direction opposée (ex : vers la gauche)
     compteur += compterJetons(ligne, colonne, -directionLigne, -directionColonne);
-
     return compteur >= 4; // Si 4 jetons ou plus sont alignés
 }
 
@@ -113,6 +133,7 @@ function reinitialiserJeu() {
     initialiserPlateau();
     joueurActuel = 'yellow'; // Le joueur jaune recommence
     jeuTerminé = false; // Le jeu n'est plus terminé
+    nouvelleGame();
 }
 
 // Événements : lorsqu'on clique sur une cellule, on place un jeton
