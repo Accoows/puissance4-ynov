@@ -40,18 +40,26 @@ function initialiserPlateau() {
 
 // Fonction pour faire le son du jeton
 function sonjeton() {
-    let audio = new Audio('../import/0918.MP3')
+    let audio = new Audio('import/0918.MP3')
     audio.play();
 }
 
 // Fonction pour faire le son du jeton
 function sonVictoire() {
-    let audio = new Audio('../import/sonvictoire.mp3')
+    let audio = new Audio('import/sonvictoire.mp3')
     audio.play();
 }
 function nouvelleGame() {
-    let audio = new Audio('../import/voieoff.mp3')
+    let audio = new Audio('import/voieoff.mp3')
     audio.play();
+}
+
+// Fonction pour afficher le modal de victoire
+function afficherVictoire(joueurGagnant) {
+    const texteVictoire = document.getElementById('texteVictoire');
+    texteVictoire.textContent = joueurGagnant.toUpperCase() + ' a gagné !'; // Modifie le texte du modal
+    const modal = new bootstrap.Modal(document.getElementById('modalVictoire')); // Initialise le modal
+    modal.show(); // Affiche le modal
 }
 
 // Fonction pour placer un jeton dans une colonne donnée
@@ -78,7 +86,7 @@ function placerJeton(colonneChoisie) {
             if (verifierVictoire(ligne, colonneChoisie)) {
                 sonVictoire()
                 setTimeout(() => {
-                    alert(joueurActuel.toUpperCase() + ' a gagné !');
+                    afficherVictoire(joueurActuel);
                     reinitialiserJeu();
                     nouvelleGame();
                 }, 100);
@@ -145,7 +153,7 @@ plateauHTML.addEventListener('click', function(event) {
 });
 
 // Événements : lorsque le bouton de réinitialisation est cliqué
-boutonReinitialiser.addEventListener('click', function() {
+document.getElementById('modal-reset-button').addEventListener('click', function() {
     reinitialiserJeu();
 });
 
