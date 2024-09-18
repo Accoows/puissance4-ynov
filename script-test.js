@@ -36,6 +36,13 @@ function initialiserPlateau() {
     }
 }
 
+// Fonction pour faire le son du jeton
+function sonjeton() {
+    let audio = new Audio('0918.MP3')
+    audio.play();
+}
+
+
 // Fonction pour placer un jeton dans une colonne donnée
 function placerJeton(colonneChoisie) {
     if (jeuTerminé) return; // Arrêter si le jeu est déjà terminé
@@ -51,6 +58,9 @@ function placerJeton(colonneChoisie) {
             let jeton = document.createElement('div');
             jeton.classList.add('token', joueurActuel, 'drop-animation');
             cellule.appendChild(jeton);
+
+            // Joue le son du jeton
+            sonjeton()
 
             // Vérifie si le joueur a gagné
             if (verifierVictoire(ligne, colonneChoisie)) {
