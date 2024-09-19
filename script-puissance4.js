@@ -88,7 +88,7 @@ function placerJeton(colonneChoisie) {
                 setTimeout(() => {
                     afficherVictoire(joueurActuel);
                     reinitialiserJeu();
-                }, 100);
+                }, 500);
                 jeuTerminé = true; // Fin du jeu
             } else {
                 joueurActuel = (joueurActuel === 'jaune') ? 'rouge' : 'jaune'; // Changement de joueur
