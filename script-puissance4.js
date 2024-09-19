@@ -1,7 +1,7 @@
 // Dimensions du plateau de jeu
 const nombreDeLignes = 6;
 const nombreDeColonnes = 7;
-let joueurActuel = 'yellow';
+let joueurActuel = 'jaune';
 // Crée un tableau vide
 let plateauDeJeu = [];
 let jeuTerminé = false;
@@ -92,7 +92,7 @@ function placerJeton(colonneChoisie) {
                 }, 100);
                 jeuTerminé = true; // Fin du jeu
             } else {
-                joueurActuel = (joueurActuel === 'yellow') ? 'red' : 'yellow'; // Changement de joueur
+                joueurActuel = (joueurActuel === 'jaune') ? 'rouge' : 'jaune'; // Changement de joueur
             }
             return; // Sort de la fonction une fois le jeton placé
         }
@@ -139,7 +139,7 @@ function compterJetons(ligne, colonne, directionLigne, directionColonne) {
 // Fonction pour réinitialiser le jeu
 function reinitialiserJeu() {
     initialiserPlateau();
-    joueurActuel = 'yellow'; // Le joueur jaune recommence
+    joueurActuel = 'jaune'; // Le joueur jaune recommence
     jeuTerminé = false; // Le jeu n'est plus terminé
     nouvelleGame();
 }
@@ -153,7 +153,7 @@ plateauHTML.addEventListener('click', function(event) {
 });
 
 // Événements : lorsque le bouton de réinitialisation est cliqué
-document.getElementById('modal-reset-button').addEventListener('click', function() {
+boutonReinitialiser.addEventListener('click', function() {
     reinitialiserJeu();
 });
 
