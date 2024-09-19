@@ -88,7 +88,6 @@ function placerJeton(colonneChoisie) {
                 setTimeout(() => {
                     afficherVictoire(joueurActuel);
                     reinitialiserJeu();
-                    nouvelleGame();
                 }, 100);
                 jeuTerminé = true; // Fin du jeu
             } else {
