@@ -62,6 +62,14 @@ function afficherVictoire(joueurGagnant) {
     modal.show(); // Affiche le modal
 }
 
+// Fonction pour afficher le modal de match nul
+function afficherMatchNul() {
+    const texteVictoire = document.getElementById('texteVictoire');
+    texteVictoire.textContent = "C'est un match nul !"; // Modifie le texte du modal
+    const modal = new bootstrap.Modal(document.getElementById('modalVictoire')); // Initialise le modal
+    modal.show(); // Affiche le modal
+}
+
 // Fonction pour placer un jeton dans une colonne donnée
 function placerJeton(colonneChoisie) {
     if (jeuTerminé) return; // Vérifie si le jeu est déjà terminé
@@ -88,7 +96,13 @@ function placerJeton(colonneChoisie) {
                 setTimeout(() => {
                     afficherVictoire(joueurActuel);
                     reinitialiserJeu();
-                }, 500);
+                }, 800);
+                jeuTerminé = true; // Fin du jeu
+            } else if (estPlein()) {
+                setTimeout(() => {
+                    afficherMatchNul();
+                    reinitialiserJeu();
+                }, 800);
                 jeuTerminé = true; // Fin du jeu
             } else {
                 joueurActuel = (joueurActuel === 'jaune') ? 'rouge' : 'jaune'; // Changement de joueur
@@ -105,6 +119,17 @@ function verifierVictoire(ligne, colonne) {
             verifierLigne(ligne, colonne, 0, 1) ||  // Vertical
             verifierLigne(ligne, colonne, 1, 1) ||  // Diagonale descendante
             verifierLigne(ligne, colonne, 1, -1));  // Diagonale montante
+}
+
+function estPlein() {
+    for (let ligne = 0; ligne < nombreDeLignes; ligne++) {
+        for (let colonne = 0; colonne < nombreDeColonnes; colonne++) {
+            if (plateauDeJeu[ligne][colonne] === null) {
+                return false
+            }
+        }
+    }
+    return true
 }
 
 // Fonction pour vérifier s'il y a 4 jetons alignés dans une direction
@@ -138,8 +163,8 @@ function compterJetons(ligne, colonne, directionLigne, directionColonne) {
 // Fonction pour réinitialiser le jeu
 function reinitialiserJeu() {
     initialiserPlateau();
-    joueurActuel = 'jaune'; // Le joueur jaune recommence
-    jeuTerminé = false; // Le jeu n'est plus terminé
+    joueurActuel = 'jaune';
+    jeuTerminé = false;
     nouvelleGame();
 }
 
@@ -151,9 +176,11 @@ plateauHTML.addEventListener('click', function(event) {
     }
 });
 
+/*
 // Événements : lorsque le bouton de réinitialisation est cliqué
 boutonReinitialiser.addEventListener('click', function() {
     reinitialiserJeu();
 });
+*/
 
 initialiserPlateau();

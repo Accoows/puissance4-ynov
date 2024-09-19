@@ -63,6 +63,24 @@ body {
     margin: 0;
 }
 
+#logo-cyber, #logo-info {
+    position: absolute;
+    z-index: 3;
+    width: 250px; /* Augmentation de la taille des logos */
+    height: auto;
+}
+
+#logo-cyber {
+    left: -350px; /* Plus éloigné du tableau à gauche */
+    top: 45%; /* Centré un peu plus vers le haut */
+    transform: translateY(-40%);
+}
+
+#logo-info {
+    right: -350px; /* Plus éloigné du tableau à droite */
+    top: 45%; /* Centré un peu plus vers le haut */
+    transform: translateY(-40%);
+}
 
 #tableau-p4 {
     position: absolute;
@@ -83,6 +101,7 @@ body {
 
 #reset-button {
     font-size: 20px;
+    z-index: 3;
     padding: 12px 25px;
     border: none;
     border-radius: 6px;
