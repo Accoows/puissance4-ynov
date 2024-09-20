@@ -194,9 +194,10 @@ function compterJetons(ligne, colonne, directionLigne, directionColonne) {
 
 // Fonction pour réinitialiser le jeu
 function reinitialiserJeu() {
-    initialiserPlateau();
     joueurActuel = 'jaune';
     jeuTerminé = false;
+    initialiserPlateau();
+    mettreAJourTour();
     nouvelleGame();
 }
 

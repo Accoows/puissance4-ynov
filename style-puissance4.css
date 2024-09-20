@@ -76,13 +76,6 @@ body {
     margin: 0;
 }
 
-#logo-cyber, #logo-info {
-    position: absolute;
-    z-index: 3;
-    width: 250px; /* Augmentation de la taille des logos */
-    height: auto;
-}
-
 #compteurs {
     font-size: 24px; /* Taille de la police */
     display: flex;
@@ -96,6 +89,10 @@ body {
 }
 
 #logo-cyber {
+    position: absolute;
+    z-index: 3;
+    width: 250px; /* Augmentation de la taille des logos */
+    height: auto;
     left: -350px; /* Plus éloigné du tableau à gauche */
     top: 45%; /* Centré un peu plus vers le haut */
     transform: translateY(-40%);
@@ -103,9 +100,13 @@ body {
 
 
 #logo-info {
-    right: -350px; /* Plus éloigné du tableau à droite */
+    position: absolute;
+    z-index: 3;
+    width: 370px; /* Augmentation de la taille des logos */
+    height: auto;
+    right: -420px; /* Plus éloigné du tableau à droite */
     top: 45%; /* Centré un peu plus vers le haut */
-    transform: translateY(-40%);
+    transform: translateY(-31%);
 }
 
 #tableau-p4 {
