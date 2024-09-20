@@ -15,6 +15,7 @@
 
 <body>
     <!-- Modal pour afficher le gagnant -->
+    <div id="tour-joueur"><strong>C'est au tour du joueur</strong></div>
     <div class="modal fade" id="modalVictoire" tabindex="-1" aria-labelledby="victoireLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
@@ -36,9 +37,13 @@
         <img id="tableau-p4" src="import/tbp4.png" alt="">
         <img id="logo-cyber" src="import/ynov-cyber-logo-bg.png" alt="">
         <img id="logo-info" src="import/ynov-info-logo-bg.png" alt="">
-        <!--
-        <button id="reset-button">Réinitialiser</button>
-        -->
+        <!--Compteur-->
+        <div id="compteurs">
+            <div id="compteurJaune" class="compteur" style="color: #ffbf00;">Jaunes : 0</div>
+            <div style="margin: 0 10px;">/</div>
+            <div id="compteurRouge" class="compteur" style="color: red;">Rouges : 0</div>
+        </div>
+        <!---->
     </div>
     <script src="script-puissance4.js"></script>
 </body>

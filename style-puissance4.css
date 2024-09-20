@@ -15,7 +15,7 @@
 .cell {
     width: 75px;
     height: 75px;
-    background-color: #ffff ;
+    background-color: #f6f6f7 ;
     border-radius: 50%;
     position: relative;
 }
@@ -35,6 +35,19 @@
 
 .rouge {
     background-color: red;
+}
+
+.joueur-jaune {
+    color: #ffbf00;
+}
+
+.joueur-rouge {
+    color: red;
+}
+
+#tour-joueur {
+    font-weight: bold;
+    font-size: 22px;
 }
 
 /* Animation */
@@ -59,7 +72,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #eee;
+    background-color: #43454b !important;
     margin: 0;
 }
 
@@ -70,11 +83,24 @@ body {
     height: auto;
 }
 
+#compteurs {
+    font-size: 24px; /* Taille de la police */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.compteur {
+    font-weight: bold; /* Texte en gras */
+}
+
 #logo-cyber {
     left: -350px; /* Plus éloigné du tableau à gauche */
     top: 45%; /* Centré un peu plus vers le haut */
     transform: translateY(-40%);
 }
+
 
 #logo-info {
     right: -350px; /* Plus éloigné du tableau à droite */
@@ -97,20 +123,4 @@ body {
     flex-direction: column;
     align-items: center;
     position: relative;
-}
-
-#reset-button {
-    font-size: 20px;
-    z-index: 3;
-    padding: 12px 25px;
-    border: none;
-    border-radius: 6px;
-    background-color: #c91111;
-    color: #fff;
-    cursor: pointer;
-    margin-top: 12px;
-}
-
-#reset-button:hover {
-    background-color: #8d0000;
 }

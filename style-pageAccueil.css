@@ -36,7 +36,7 @@ p{
     color: whitesmoke;
 }
 #dev{
-    font-size: 28px;
+    font-size: 20px;
 }
 a{
     text-decoration: none;
@@ -81,7 +81,7 @@ a:hover{
     cursor: pointer;
     display: inline-block;
     font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 600;
     line-height: normal;
     margin: 0;
@@ -95,6 +95,7 @@ a:hover{
     touch-action: manipulation;
     width: 20%;
     will-change: transform;
+    letter-spacing: 4px;
 }
 
 .boutton-start:disabled {

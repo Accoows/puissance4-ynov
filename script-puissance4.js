@@ -2,13 +2,16 @@
 const nombreDeLignes = 6;
 const nombreDeColonnes = 7;
 let joueurActuel = 'jaune';
+// Compteur jaune et rouge
+let compteurRouge = 0;
+let compteurJaune = 0;
 // Crée un tableau vide
 let plateauDeJeu = [];
 let jeuTerminé = false;
 
 // Récupérer les éléments HTML du plateau et du bouton de réinitialisation dans les div
 const plateauHTML = document.getElementById('game-board');
-const boutonReinitialiser = document.getElementById('reset-button');
+const tourJoueurHTML = document.getElementById('tour-joueur');
 
 // Initialisation du tableau
 function initialiserPlateau() {
@@ -36,6 +39,9 @@ function initialiserPlateau() {
             plateauHTML.appendChild(cellule);
         }
     }
+
+    // Met à jour le message du joueur actuel
+    mettreAJourTour();
 }
 
 // Fonction pour faire le son du jeton
@@ -58,6 +64,16 @@ function nouvelleGame() {
 function afficherVictoire(joueurGagnant) {
     const texteVictoire = document.getElementById('texteVictoire');
     texteVictoire.textContent = joueurGagnant.toUpperCase() + ' a gagné !'; // Modifie le texte du modal
+
+    // Met à jour les compteurs
+    if (joueurGagnant === 'jaune') {
+        compteurJaune++;
+        document.getElementById('compteurJaune').textContent = `Jaunes : ${compteurJaune}`;
+    } else {
+        compteurRouge++;
+        document.getElementById('compteurRouge').textContent = `Rouges : ${compteurRouge}`;
+    }
+
     const modal = new bootstrap.Modal(document.getElementById('modalVictoire')); // Initialise le modal
     modal.show(); // Affiche le modal
 }
@@ -88,11 +104,11 @@ function placerJeton(colonneChoisie) {
             cellule.appendChild(jeton);
 
             // Joue le son du jeton
-            sonjeton()
+            sonjeton();
 
             // Vérifie si le joueur a gagné
             if (verifierVictoire(ligne, colonneChoisie)) {
-                sonVictoire()
+                sonVictoire();
                 setTimeout(() => {
                     afficherVictoire(joueurActuel);
                     reinitialiserJeu();
@@ -106,9 +122,25 @@ function placerJeton(colonneChoisie) {
                 jeuTerminé = true; // Fin du jeu
             } else {
                 joueurActuel = (joueurActuel === 'jaune') ? 'rouge' : 'jaune'; // Changement de joueur
+                mettreAJourTour();
             }
             return; // Sort de la fonction une fois le jeton placé
         }
+    }
+}
+
+// Fonction pour mettre à jour le tour du joueur avec la couleur
+function mettreAJourTour() {
+    tourJoueurHTML.textContent = `C'est au joueur ${joueurActuel.toUpperCase()} de jouer`;
+
+    // Enlève les classes de couleur existantes
+    tourJoueurHTML.classList.remove('joueur-jaune', 'joueur-rouge');
+
+    // Ajoute la classe correspondante pour changer la couleur
+    if (joueurActuel === 'jaune') {
+        tourJoueurHTML.classList.add('joueur-jaune');
+    } else if (joueurActuel === 'rouge') {
+        tourJoueurHTML.classList.add('joueur-rouge');
     }
 }
 
@@ -175,12 +207,5 @@ plateauHTML.addEventListener('click', function(event) {
         placerJeton(parseInt(colonneCliquee));
     }
 });
-
-/*
-// Événements : lorsque le bouton de réinitialisation est cliqué
-boutonReinitialiser.addEventListener('click', function() {
-    reinitialiserJeu();
-});
-*/
 
 initialiserPlateau();
